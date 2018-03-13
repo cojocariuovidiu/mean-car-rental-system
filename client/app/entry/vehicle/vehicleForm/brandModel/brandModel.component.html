@@ -1,0 +1,12 @@
+<div class="form-group">
+    <label>Marka Model</label>
+    <select (blur)="onBlur()" [(ngModel)]="selectedValue" [attr.disabled]="!!_brandModels ? null:'disabled'" (change)="onBrandModelChange($event)" class="form-control form-control-sm">
+
+        <option *ngIf="!_brandModels" value="null">Marka Seçiniz</option>
+        <ng-container *ngIf="!!_brandModels">
+            <option value="null">Seçiniz</option>
+
+            <option *ngFor="let brandModel of _brandModels;let i=index;" [value]="brandModel._id">{{brandModel.name}}</option>
+        </ng-container>
+    </select>
+</div>

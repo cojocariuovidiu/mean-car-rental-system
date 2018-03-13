@@ -1,0 +1,48 @@
+
+
+
+.table-container,.items-container,.form-container{
+	margin:16px auto;
+	border:1px solid silver;
+	padding: 16px;
+	border-radius:8px;
+}
+
+
+
+.--display-none{
+	display:none;
+}
+.tab-navigation-container__item.active{
+    border-bottom:none !important;
+}
+fieldset 
+{
+	border: 1px solid #ddd !important;
+	border-radius:4px;
+	padding:8px 12px;
+}	
+
+legend
+{
+	/* margin-bottom: 0px; 
+	width: 35%;  */
+	font-size:1rem;
+	width:initial;
+	padding-left:16px;
+	margin-left:16px;
+	padding-right:16px;
+}
+
+input[type=date].form-control-sm{
+	height:31px;
+}
+
+.validation-p{
+	margin:0;
+	padding:2px;
+}
+
+.padding-container{
+	padding:16px;
+}

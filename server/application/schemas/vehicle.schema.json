@@ -1,0 +1,165 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "vehicle",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "plateHistory",
+        "vehicleNumber"
+    ],
+    "plateHistory": {
+        "type": "array",
+        "items": {
+            "type": "object",
+            "required": [
+                "plate"
+            ],
+            "properties": {
+                "plate": {
+                    "type": "string"
+                },
+                "dateFrom": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        }
+    },
+    "properties": {
+        "vehicleNumber": {
+            "type": "number"
+        },
+        "modelYear": {
+            "type": "number"
+        },
+        "registrationDocumentNumber": {
+            "type": "string"
+        },
+        "registrationDate": {
+            "type:": "string",
+            "format": "date-time"
+        },
+        "kmStatus": {
+            "type": "number"
+        },
+        "nextExaminateionDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "trafficInsurenceEndDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "vehicleInsurenceEndDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "ogsLabelNumber": {
+            "type": "string"
+        },
+        "warning": {
+            "type": "boolean"
+        },
+        "description": {
+            "type": "string"
+        },
+        "isSold": {
+            "type": "boolean"
+        },
+        "saleDate": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "saleKm": {
+            "type": "number",
+            "minimum": 0
+        },
+        "saledPerson": {
+            "type": "string"
+        },
+        "engineNumber": {
+            "type": "string"
+        },
+        "chassisNumber": {
+            "type": "string"
+        },
+        "tapeCode": {
+            "type": "string"
+        },
+        "gearType": {
+            "type": "number"
+        },
+        "seatCount": {
+            "type": "number"
+        },
+        "enginePower": {
+            "type": "number"
+        },
+        "horsePower": {
+            "type": "number"
+        },
+        "brand": {
+            "type": "object",
+            "properties": {
+                "brandName": {
+                    "type": "string"
+                }
+            }
+        },
+        "brandModel": {
+            "type": "object",
+            "properties": {
+                "brandModelName": {
+                    "type": "string"
+                }
+            }
+        },
+        "color": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string",
+                    "maxLength": 6,
+                    "minLength": 6
+                }
+            }
+        },
+        "vehicleExpenses": {
+            "type": "array",
+            "items": {
+                "title": "vehicleExpenses",
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "expenseType": {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "expenseDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "currentKm": {
+                        "type": "number"
+                    },
+                    "nextExaminationKm": {
+                        "type": "number"
+                    },
+                    "metarialCost": {
+                        "type": "number"
+                    },
+                    "workCost": {
+                        "type": "number"
+                    },
+                    "expenseDescription": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}

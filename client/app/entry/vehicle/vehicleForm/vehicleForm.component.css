@@ -1,0 +1,21 @@
+.vehicle-form-common{
+
+}
+
+/* .vehicle-form-common__header{
+    display: inline-block;
+    transform: rotate(-90deg);
+    padding: 0;
+    margin: 172px -64px;
+    float:left;
+    background-color:black;
+    color:white;
+} */
+
+.padding-right{
+    padding-right:8px;
+}
+
+.description-area{
+    height:112px;
+}

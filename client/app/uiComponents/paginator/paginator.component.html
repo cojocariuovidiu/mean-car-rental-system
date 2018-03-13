@@ -1,0 +1,45 @@
+<th>
+    <div class="pagination-container">
+
+        <ul>
+            <li (click)="changePage(currentPage-1)">
+                <a>Önceki</a>
+            </li>
+            <li *ngIf="currentPage>3" (click)="changePage(currentPage-3)">
+                <a>{{currentPage-3}}</a>
+            </li>
+
+            <li *ngIf="currentPage>2" (click)="changePage(currentPage-2)">
+                <a>{{currentPage-2}}</a>
+            </li>
+            <li *ngIf="currentPage>1" (click)="changePage(currentPage-1)">
+                <a>{{currentPage-1}}</a>
+            </li>
+            <li class="pagination--active">
+                <a>{{currentPage}}</a>
+            </li>
+            <li *ngIf="currentPage<pageCount" (click)="changePage(currentPage+1)">
+                <a>{{currentPage+1}}</a>
+            </li>
+
+            <li *ngIf="currentPage<pageCount-1" (click)="changePage(currentPage+2)">
+                <a>{{currentPage+2}}</a>
+            </li>
+            <li *ngIf="currentPage<pageCount-2" (click)="changePage(currentPage+3)">
+                <a>{{currentPage+3}}</a>
+            </li>
+            <li (click)="changePage(currentPage+1)">
+                <a>Sonraki</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="page-size-container">
+        <ul>
+            <li class="page-size" *ngFor="let size of sizeList" [ngClass]="{'page-size--active':take==size}" (click)="onSizeClick(size)">
+                <a>{{size}}</a>
+            </li>
+        </ul>
+    </div>
+
+</th>

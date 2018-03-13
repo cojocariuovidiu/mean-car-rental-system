@@ -1,0 +1,7 @@
+.dropdown{
+    position:absolute;
+    min-height:auto;
+    z-index:10;
+    background-color: white;
+    border:1px solid silver;
+}

@@ -1,0 +1,9 @@
+<div class="form-group">
+    <label>Renk</label>
+    <select [(ngModel)]="selectedValue" (change)="onColorChange($event)" [attr.disabled]="disabled?'disabled':null" class="form-control form-control-sm">
+
+        <option value="null">Lütfen Seçiniz</option>
+        <option *ngFor="let color of colors;let i=index;" [value]="color._id">{{color.name}}</option>
+    </select>
+
+</div>

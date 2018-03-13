@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 offset-md-4 login-box">
+
+            <form [formGroup]="loginForm">
+
+                <div class="form-group">
+
+                    <label> Kullanıcı Adı</label>
+                    <input type="text" class="form-control form-control-sm" formControlName="username" />
+
+                </div>
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <input class="form-control form-control-sm" type="password" formControlName="password">
+                </div>
+
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" value="true" formControlName="remember" id="rememberMeCheck">
+                        <label class="form-check-label" for="rememberMeCheck">Beni Hatırla</label>
+                    </div>
+
+                    <button class="pull-right" type="button" class="btn btn-success" (click)="loginClick($event)">Giriş</button>
+
+
+                </div>
+
+                <p class="alert alert-danger" *ngIf="!!loginError">
+                    {{loginError}}
+                </p>
+
+            </form>
+
+        </div>
+
+
+    </div>
+</div>

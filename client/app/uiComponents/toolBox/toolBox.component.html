@@ -1,0 +1,33 @@
+<a 
+ title="Düzenle"
+ class="btn btn-warning edit-button"
+ [attr.disabled]="!allEnabled?'disabled':null"
+ [ngClass]="{'--display-none':!editActive}"
+ [routerLink]="editRouterLink||null"
+ >
+ 
+ <i class="fa fa-edit"></i>
+
+</a>
+
+
+<a
+ title="Detay"
+ class="btn btn-info detail-button"
+ [attr.disabled]="!allEnabled?'disabled':null"
+ [ngClass]="{'--display-none':!detailActive}"
+ [routerLink]="detailRouterLink||null"
+ >
+    <i class="fa fa-eye"></i>
+
+</a>
+
+<a 
+title="Sil"
+class="btn btn-danger remove-button"
+[attr.disabled]="!allEnabled?'disabled':null"
+[ngClass]="{'--display-none':!removeActive}"
+[routerLink]="removeRouterLink||null">
+    <i class="fa fa-times"></i>
+
+</a>

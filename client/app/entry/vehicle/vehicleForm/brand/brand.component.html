@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label>Marka</label>
+    <select [(ngModel)]="selectedValue" class="form-control form-control-sm" (blur)="onBlur()" (change)="onBrandChange($event)" #brandSelect>
+
+        <option value="null">Seçiniz</option>
+        <option *ngFor="let brand of brands;let i=index;" [value]="brand._id">{{brand.name}}</option>
+    </select>
+</div>

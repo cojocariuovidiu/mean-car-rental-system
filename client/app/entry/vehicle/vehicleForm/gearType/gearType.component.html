@@ -1,0 +1,15 @@
+<div class="form-group">
+    <label>Vites Türü</label>
+
+    <div class="form-group">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gearType" id="manuelRadio" [checked]="_value==0" value="0" (change)="radioChange($event)">
+            <label class="form-check-label" for="manuelRadio">Manuel</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gearType" id="automaticRadio" (change)="radioChange($event)" [checked]="_value==1"
+                value="1">
+            <label class="form-check-label" for="automaticRadio">Otomatik</label>
+        </div>
+    </div>
+</div>

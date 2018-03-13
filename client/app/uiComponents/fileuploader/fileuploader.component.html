@@ -1,0 +1,42 @@
+<input type="file" #fileUploader (change)="filesChange($event)" multiple/>
+
+<div *ngFor="let addedFile of valueFiles;let i=index">
+    <a [attr.href]="fileApiUrl+'/'+ addedFile._id">{{addedFile.filename}}</a>
+</div>
+
+<div class="upload-files-container" *ngIf="fileList && fileList.length>0">
+
+    <div *ngFor="let file of fileList.files;let i=index" class="file-box" #fileBox>
+
+        <i class="fa fa-times file-box__file-remove" [ngClass]="{'--display-none':uploading>0}" (click)="removeFileFromList(file)"></i>
+
+        <p class="file-box__file-name">
+
+            <i class="fa" [ngClass]="fileIcons[file.type]?fileIcons[file.type]:fileIcons[0]"></i>{{file.name}}</p>
+        <p class="file-box__file-size">{{(file.size/1024).toFixed()}}KB</p>
+
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div>
+
+    <div class="file-uploader__bottom-container">
+
+        <button class="file-uploader__choose-file-button" (click)="fileClick($event)">
+            <i class="fa fa-folder-open-o"></i>Dosya Seç</button>
+
+        <button class="file-uploader__upload-files-button" (click)="uploadFiles($event)" [ngClass]="{'--display-none':!fileList.files || fileList.files.length<=0}">
+            <i class="fa fa-arrow-up"></i> Seçili Dosyaları Yükle</button>
+
+        <button class="file-uploader__clear-files-button" (click)="clearFiles($event)" [ngClass]="{'--display-none':!fileList.files || fileList.files.length<=0}">
+            <i class="fa fa-repeat"></i>Seçili Dosyaları Temizle</button>
+
+        <span class="file-count-span">{{fileList&&fileList.length>0?fileList.length +'adet dosya seçildi':'Seçili dosya yok'}}</span>
+    </div>
+
+</div>

@@ -1,0 +1,39 @@
+<div [formGroup]="plateHistoryForm" class="input-group input-group-sm plate-item">
+    <input formControlName="dateFrom" (blur)="onDateBlur($event)" type="date" class="form-control" [attr.disabled]="!this.disabled ? null : 'disabled'">
+
+    <div class="input-group-append">
+        <span class="input-group-text">
+            <i class="fa fa-arrow-right"></i>
+        </span>
+    </div>
+    <input UppercaseLetterAndNumber formControlName="plate" type="text" class="form-control" (blur)="onPlateBlur($event)" [attr.disabled]="!this.disabled ? null : 'disabled'">
+
+    <div class="input-group-append">
+
+
+        <button class="btn btn-secondary" type="button" (click)="onCancelClick($event)" [ngClass]="{'--display-none':!!this.disabled}">
+            <i class=" fa fa-minus "></i>
+        </button>
+        <!--  -->
+
+        <button class="btn btn-danger " type="button" (click)="onRemoveClick($event)" [ngClass]="{'--display-none':!!this.disabled}">
+            <i class="fa fa-trash "></i>
+        </button>
+        <!--  -->
+    </div>
+
+</div>
+<div class="alert alert-danger" *ngIf="(plateHistoryForm.controls.plate.touched && plateHistoryForm.controls.plate.invalid) ||( plateHistoryForm.controls.dateFrom.touched && plateHistoryForm.controls.dateFrom.invalid)">
+    <p class="validation-p" *ngIf="plateHistoryForm.controls.plate.errors?plateHistoryForm.controls.plate.errors.required:false">
+        *Plaka alanı girilmesi zorunludur.
+    </p>
+    <p class="validation-p" *ngIf="plateHistoryForm.controls.plate.errors?plateHistoryForm.controls.plate.errors.pattern:false">
+        *Plaka doğru biçimde olmalıdır.
+    </p>
+    <p class="validation-p" *ngIf="plateHistoryForm.controls.dateFrom.errors?plateHistoryForm.controls.dateFrom.errors.required:false">
+        *Plaka'nın geçerli olduğu tarih girilmesi zorunludur.
+    </p>
+</div>
+
+<!-- {{plateHistoryForm.controls.plate.invalid }}{{plateHistoryForm.controls.plate.touched }}{{plateHistoryForm.controls.plate.errors|json
+}}; {{ plateHistoryForm.controls.dateFrom.errors|json}} -->

@@ -1,0 +1,102 @@
+<div [ngClass]="{'--display-none':!loading}" class="data-table-loading-container" [ngStyle]="{'top.px':tableTopPosition,'left.px':dataTable.getBoundingClientRect().left,'width.px':dataTable.offsetWidth,'height.px':dataTable.offsetHeight,'z-index':dataTable.style['z-index']+5,'padding-top.px':dataTable.offsetHeight/2}">
+
+    <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+
+</div>
+<table class="data-table-component" #dataTable>
+    <thead>
+
+        <tr>
+            <th *ngFor="let column of _options.columns" (click)="columnHeaderClick(column)">
+                <i *ngIf="!!column.order && column.orderable!==false" [ngClass]="{'--order-ascending': column.order===1,'--order-descending':column.order===-1}"></i> {{column.title?column.title:column.dataField}}</th>
+            <th *ngIf="_options.operationColumnConfiguration">
+                İşlemler
+            </th>
+
+        </tr>
+    </thead>
+    <tbody class="content-tbody">
+        <tr *ngFor="let row of data ? data.data : null;let j=index" #dataTableRow (click)="setActiveRow(dataTableRow,j)">
+
+
+            <td *ngFor="let column of _options.columns" #dataTableCell>
+                {{ column.dataField ? ((column.render? column.render( row[column.dataField],j,this,dataTableCell,row):row[column.dataField])):
+                column.render ? column.render(null,j,this,dataTableCell,row):""}}</td>
+
+            <ng-container *ngIf="_options.operationColumnConfiguration">
+
+                <toolbox
+                 [editActive]="_options.operationColumnConfiguration.editButton.active" 
+                 [detailActive]="_options.operationColumnConfiguration.detailButton.active"
+                 [removeActive]="_options.operationColumnConfiguration.removeButton.active"
+                 [editRouterLink]="_options.operationColumnConfiguration.editButton.routerLinkGenerator(row)"
+                 [detailRouterLink]="_options.operationColumnConfiguration.detailButton.routerLinkGenerator(row)"
+                 [removeRouterLink]=
+                 "
+                    _options.operationColumnConfiguration.removeButton.routerLinkGenerator?
+                    _options.operationColumnConfiguration.removeButton.routerLinkGenerator(row):
+                    null
+                 "
+                 [allEnabled]="_options.operationColumnConfiguration.operationButtonsEnabled? _options.operationColumnConfiguration.operationButtonsEnabled():true">
+
+                </toolbox>
+
+            </ng-container>
+
+
+        </tr>
+    </tbody>
+    <tfoot>
+        <th [attr.colspan]="_options.columns? _options.columns.length:0">
+            <div class="pagination-container">
+
+                <ul>
+                    <li (click)="changePage(currentPage-1)">
+                        <a>Önceki</a>
+                    </li>
+                    <li *ngIf="currentPage>3" (click)="changePage(currentPage-3)">
+                        <a>{{currentPage-3}}</a>
+                    </li>
+
+                    <li *ngIf="currentPage>2" (click)="changePage(currentPage-2)">
+                        <a>{{currentPage-2}}</a>
+                    </li>
+                    <li *ngIf="currentPage>1" (click)="changePage(currentPage-1)">
+                        <a>{{currentPage-1}}</a>
+                    </li>
+                    <li class="pagination--active">
+                        <a>{{currentPage}}</a>
+                    </li>
+                    <li *ngIf="currentPage<pageCount" (click)="changePage(currentPage+1)">
+                        <a>{{currentPage+1}}</a>
+                    </li>
+
+                    <li *ngIf="currentPage<pageCount-1" (click)="changePage(currentPage+2)">
+                        <a>{{currentPage+2}}</a>
+                    </li>
+                    <li *ngIf="currentPage<pageCount-2" (click)="changePage(currentPage+3)">
+                        <a>{{currentPage+3}}</a>
+                    </li>
+                    <li (click)="changePage(currentPage+1)">
+                        <a>Sonraki</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="page-size-container">
+                <ul>
+                    <li class="page-size" *ngFor="let size of sizeList" [ngClass]="{'page-size--active':take==size}" (click)="onSizeClick(size)">
+                        <a>{{size}}</a>
+                    </li>
+                </ul>
+            </div>
+
+        </th>
+    </tfoot>
+</table>

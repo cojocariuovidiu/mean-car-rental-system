@@ -1,0 +1,49 @@
+<div class="form-group">
+
+    <label>Plaka</label>
+    <div class="form-row">
+
+        <div [formGroup]="newPlateHistoryForm" class="input-group input-group-sm">
+            <input formControlName="dateFrom" type="date" class="form-control" (blur)="dateFromBlur()">
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="fa fa-arrow-right"></i>
+                </span>
+            </div>
+            <input formControlName="plate" type="text" class="form-control" (blur)="plateBlur()" UppercaseLetterAndNumber>
+
+            <div class="input-group-append">
+                <button class="btn btn-success" type="button" (click)="addClick($event)">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="alert alert-danger" *ngIf="addingInvalidState ||(newPlateHistoryForm.controls.plate.touched && newPlateHistoryForm.controls.plate.invalid) ||( newPlateHistoryForm.controls.dateFrom.touched && newPlateHistoryForm.controls.dateFrom.invalid)">
+        <p class="validation-p" *ngIf="newPlateHistoryForm.controls.plate.errors?newPlateHistoryForm.controls.plate.errors.required:false">
+            *Eklemek için plaka alanı girilmesi zorunludur.
+        </p>
+        <p class="validation-p" *ngIf="newPlateHistoryForm.controls.plate.errors?newPlateHistoryForm.controls.plate.errors.pattern:false">
+            *Eklemek için plaka doğru biçimde olmalıdır.
+        </p>
+        <p class="validation-p" *ngIf="newPlateHistoryForm.controls.dateFrom.errors?newPlateHistoryForm.controls.dateFrom.errors.required:false">
+            *Eklemek için plakanın geçerli olduğu tarih girilmesi zorunludur.
+        </p>
+    </div>
+
+
+    <fieldset class="form-group">
+        <legend>
+            <label>Plaka Tarihçesi</label>
+        </legend>
+        <div>
+
+            <plateitem (blur)="itemsBlur()" *ngFor="let plate of plateHistory;let i=index" [setValue]="plate">
+
+            </plateitem>
+        </div>
+
+    </fieldset>
+</div>

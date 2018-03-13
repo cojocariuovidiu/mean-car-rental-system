@@ -1,0 +1,19 @@
+
+datatable{
+	width:100%;
+	padding:0;
+	margin:0;
+}
+
+
+router-outlet{
+    width:100%;
+}
+
+vehicle{
+    width:100%;
+}
+
+vehiclelist{
+	width:100%;
+}

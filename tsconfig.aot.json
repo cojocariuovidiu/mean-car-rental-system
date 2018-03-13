@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "target": "es2015",
+        "emitDecoratorMetadata": true,
+        "declaration": false,
+        "outDir": "./client/appaot"
+    },
+    "typeRoots": [
+        "node_modules/@types"
+    ],
+    "lib": [
+        "es2017",
+        "dom"
+    ],
+    "angularCompilerOptions": {
+        "skipMetadataEmit": true
+    },
+    "exclude": [
+        "client/main.aot.ts"
+    ]
+}

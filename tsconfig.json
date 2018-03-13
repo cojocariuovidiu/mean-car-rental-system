@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "sourceMap": true,
+        "target": "es2015",
+        "emitDecoratorMetadata": true,
+        "declaration": false
+    },
+    "typeRoots": [
+        "node_modules/@types"
+    ],
+    "lib": [
+        "es2017",
+        "dom"
+    ],
+    "exclude": [
+        "client/main.aot.ts"
+    ]
+}

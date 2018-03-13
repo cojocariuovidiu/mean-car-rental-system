@@ -1,0 +1,271 @@
+{{vehicleForm.value|json}}
+<div [formGroup]="vehicleForm">
+
+    <div class="container-fluid">
+        <div class="row">
+            <button class="btn btn-success" (click)="saveVehicle($event)">Kaydet</button>
+        </div>
+    </div>
+    <div class="padding-container">
+        <div class="container-fluid form-container">
+
+            <div class="vehicle-form-common__header">
+                <h3>Genel Bilgiler</h3>
+            </div>
+            <div class="row">
+
+
+                <div class="col-sm-12 col-md-4 ">
+
+
+                    <plate formControlName="plateHistory"></plate>
+                    <div class="alert alert-danger" *ngIf="vehicleForm.controls.plateHistory.touched && vehicleForm.controls.plateHistory.invalid">
+                        <p class="validation-p">*Lütfen plaka tarihçesindeki hataları gideriniz.</p>
+
+                        <p class="validation-p" *ngIf="vehicleForm.controls.plateHistory.errors.required">*Plaka tarihçesinde en az bir plaka kayıtlı olmalıdır.</p>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>Model Yılı</label>
+                        <input formControlName="modelYear" id="modelYear" class="form-control form-control-sm" type="number" />
+                    </div>
+
+                    <brand formControlName="brand"></brand>
+                    <div class="alert alert-danger" *ngIf="vehicleForm.controls.brand.touched && vehicleForm.controls.brand.invalid">
+                        <p class="validation-p" *ngIf="vehicleForm.controls.brand.errors.required">*Marka seçilmesi zorunludur.</p>
+                    </div>
+
+
+                    <brandModel formControlName="brandModel" [brandModels]="vehicleForm.controls.brand.value?vehicleForm.controls.brand.value.models:null">
+                    </brandModel>
+                    <div class="alert alert-danger" *ngIf="vehicleForm.controls.brandModel.touched && vehicleForm.controls.brandModel.invalid">
+                        <p class="validation-p" *ngIf="vehicleForm.controls.brandModel.errors.required">*Marka modeli seçilmesi zorunludur.</p>
+                    </div>
+
+
+                    <color formControlName="color"></color>
+                </div>
+                <div class="col-sm-12 col-md-4 ">
+
+
+
+
+                    <div class="form-group">
+                        <label>Km Durumu</label>
+                        <input formControlName="kmStatus" class="form-control form-control-sm" type="number" />
+                        <div class="alert alert-danger" *ngIf="vehicleForm.controls.kmStatus.touched && vehicleForm.controls.kmStatus.invalid">
+                            <p class="validation-p" *ngIf="vehicleForm.controls.kmStatus.errors.required">*Aracın km durumu girilmesi zorunludur.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Koltuk Sayısı</label>
+                        <input formControlName="seatCount" class="form-control form-control-sm" type="number" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Motor Gücü</label>
+                        <input formControlName="enginePower" class="form-control form-control-sm" type="number" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Beygir Gücü</label>
+                        <input formControlName="horsePower" class="form-control form-control-sm" type="number" step="0.1" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Ruhsat Belge No</label>
+                        <input formControlName="registrationDocumentNumber" class="form-control form-control-sm" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>OGS Etiket Numarası</label>
+                        <input formControlName="ogsLabelNumber" class="form-control form-control-sm" type="text" />
+                    </div>
+
+                    <gearType formControlName="gearType"></gearType>
+
+                </div>
+
+                <div class="col-sm-12 col-md-4 ">
+
+                    <div class="form-group">
+                        <label>Şase Numarası</label>
+                        <input formControlName="chassisNumber" class="form-control form-control-sm" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Motor Numarası</label>
+                        <input formControlName="engineNumber" class="form-control form-control-sm" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label>Teyp Kodu</label>
+                        <input formControlName="tapeCode" class="form-control form-control-sm" type="text" />
+                    </div>
+
+
+                    <div class="form-group">
+                        <label>Tescil Tarihi</label>
+                        <datepicker formControlName="registrationDate"></datepicker>
+                    </div>
+                    <div class="form-group">
+                        <label>Gelecek Muayene Tarihi</label>
+                        <datepicker formControlName="nextExaminationDate"></datepicker>
+                    </div>
+                    <div class="form-group">
+                        <label>Kasko Bitiş Tarihi</label>
+                        <datepicker formControlName="vehicleInsurenceEndDate"></datepicker>
+                    </div>
+                    <div class="form-group">
+                        <label>Trafik Sigorta Bitiş</label>
+                        <datepicker formControlName="trafficInsurenceEndDate">
+                        </datepicker>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="padding-container">
+
+        <div class="container-fluid form-container">
+            <div>
+                <h3>Araç Özellikleri</h3>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <feature></feature>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row ">
+            <div class="padding-container col-md-6">
+
+                <div class="form-container">
+                    <h3>Uyarı Bilgileri</h3>
+                    <div class="row" [formGroup]="vehicleForm">
+
+                        <div class="col-12 ">
+                            <div class="form-group">
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="warning" value="true" formControlName="warning">
+                                    <label class="form-check-label" for="warning">Uyarı</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 ">
+
+                            <div class="form-group">
+                                <label>Açıklama</label>
+                                <textarea class="form-control form-control-sm description-area" formControlName="description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="padding-container col-md-6 ">
+
+                <div class="form-container">
+
+                    <h3>Satış Bilgileri</h3>
+                    <div class="row">
+
+                        <div class="col-sm-12 col-md-12 ">
+                            <div class="form-group">
+
+                                <div class="form-check form-check-inline">
+                                    <input value="true" formControlName="isSold" class="form-check-input" type="checkbox" id="isSold">
+                                    <label class="form-check-label" for="isSold">Satıldı Olarak İşaretle</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" formGroupName="saleInfo">
+
+                        <div class="col-sm-12 col-md-6 ">
+
+
+
+                            <div class="form-group">
+                                <label>Satış Tarihi</label>
+                                <input formControlName="saleDate" class="form-control form-control-sm" type="date" [attr.disabled]="!vehicleForm.controls.isSold.value?'disabled':null"
+                                />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+
+
+
+                            <div class="form-group">
+                                <label>Satış Kilometresi</label>
+                                <input formControlName="saleKm" class="form-control form-control-sm" type="number" [attr.disabled]="!vehicleForm.controls.isSold.value?'disabled':null"
+                                />
+                            </div>
+
+
+                        </div>
+                        <div class="col-sm-12 col-md-6 ">
+                            <div class="form-group">
+                                <label>Satıldığı Kişi</label>
+                                <input formControlName="saledPerson" class="form-control form-control-sm" type="text" [attr.disabled]="!vehicleForm.controls.isSold.value?'disabled':null"
+                                />
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md-6 ">
+
+                            <div class="form-group">
+                                <label>Satış Tutarı</label>
+                                <input formControlName="saleAmount" class="form-control form-control-sm" type="number" [attr.disabled]="!vehicleForm.controls.isSold.value?'disabled':null"
+                                />
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="padding-container">
+
+        <div class="container-fluid form-container">
+            <h3>Dosyalar</h3>
+            <div class="row">
+                <div class="col-md-12">
+
+                    <fileuploader formControlName="files" [fileApiUrl]="vehicleService.vehicleFileApi" [entityId]="_vehicleModel?_vehicleModel._id:null"></fileuploader>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

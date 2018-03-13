@@ -1,0 +1,21 @@
+<div class="input-group input-group-sm" #inputGroup>
+
+    <input type="text" class="form-control" (keydown)="inputKeydown($event)" (keyup)="inputChange($event)"
+     [value]="selectedValue?selectedValue.name:''"
+        #input/>
+
+    <span class="input-group-append">
+        <button class="btn btn-outline-secondary" #appendButton (click)="appendClick($event)">
+            <i class="fa fa-angle-down" #appendIcon></i>
+        </button>
+    </span>
+
+</div>
+
+<div class="dropdown" [ngStyle]="{'width.px':inputGroup.offsetWidth}" [ngClass]="{'--display-none':!visible}" #dropdown>
+
+    <dropdown-item [parent]="this" (onClicked)="dropdownItemClicked($event)" (onSelected)="itemSelected($event)" [selected]="i==selectedItem?true:false"
+        *ngFor="let item of filteredSource;let i=index;" [value]="{name:item[displayField],value:item[valueField]}" [index]="i"
+        clickTrigger="clickTrigger"></dropdown-item>
+
+</div>
