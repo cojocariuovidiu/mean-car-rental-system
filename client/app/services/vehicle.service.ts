@@ -51,4 +51,12 @@ export class VehicleService {
             vehicleModel,
             { headers: this.userService.authHeader });
     }
+
+
+    update(vehicleModel: VehicleModel): Observable<null> {
+        return this.http.post<null>(
+            this.appConfigService.apiRoot + "/vehicle/update",
+            vehicleModel,
+            { headers: this.userService.authHeader });
+    }
 }

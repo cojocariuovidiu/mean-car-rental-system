@@ -1,8 +1,7 @@
 <div class="input-group input-group-sm" #inputGroup>
 
-    <input type="text" class="form-control" (keydown)="inputKeydown($event)" (keyup)="inputChange($event)"
-     [value]="selectedValue?selectedValue.name:''"
-        #input/>
+    <input type="text" class="form-control" (blur)="inputBlur()" (keydown)="inputKeydown($event)" (keyup)="inputChange($event)"
+        [value]="selectedValue?selectedValue.name:''" #input/>
 
     <span class="input-group-append">
         <button class="btn btn-outline-secondary" #appendButton (click)="appendClick($event)">

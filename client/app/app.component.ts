@@ -24,5 +24,9 @@ export class AppComponent {
         // this.router.navigateByUrl('uygulama');
     }
 
+    public get activePromiseCount() {
+        return this.spinnerService.activePromiseCount;
+    }
+
 }
 

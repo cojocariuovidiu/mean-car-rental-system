@@ -15,7 +15,6 @@ import { NgModule } from "@angular/core";
 import { PaginatorComponent } from "./uiComponents/paginator/paginator.component";
 import { UpperCaseLetterAndNumberDirective } from "./directives/uppercase.directive";
 import { UserService } from "./services/user.service";
-import { AuthGuardService } from "./routeGuards/authGuard.service";
 import { VehicleFeatureService } from "./services/vehicleFeature.service";
 
 
@@ -44,7 +43,6 @@ import { VehicleFeatureService } from "./services/vehicleFeature.service";
             SpinnerService,
             CommonUtilityService,
             UserService,
-            AuthGuardService,
             VehicleFeatureService
         ],
     bootstrap: [AppComponent]

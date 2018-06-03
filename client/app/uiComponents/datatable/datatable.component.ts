@@ -87,10 +87,8 @@ export class DataTableComponent {
     }
 
     changePage(pageNumber) {
-        if (pageNumber <= 0)
-            pageNumber = 1;
-        else if (pageNumber >= this.pageCount)
-            pageNumber = this.pageCount;
+        if (pageNumber <= 0 || pageNumber >= this.pageCount)
+            return;
 
         this.current = (pageNumber - 1) * this.take;
         this.loadTable();

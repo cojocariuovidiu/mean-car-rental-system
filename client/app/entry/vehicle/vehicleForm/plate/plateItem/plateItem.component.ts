@@ -67,7 +67,7 @@ export class PlateItemComponent implements ControlValueAccessor {
 
     private onChange: (any) => void;
     private onTouched: () => void;
-    private disabled: boolean;
+    public disabled: boolean;
     private touched: boolean = false;
 
     writeValue(obj: any): void {
@@ -92,7 +92,7 @@ export class PlateItemComponent implements ControlValueAccessor {
         }
     }
 
-    onPlateBlur() {
+    onPlateBlur(event: Event) {
         this.setTouched();
         if (this.onTouched) {
             this.onTouched();
@@ -100,7 +100,7 @@ export class PlateItemComponent implements ControlValueAccessor {
         }
     }
 
-    onDateBlur() {
+    onDateBlur(event: Event) {
         this.setTouched();
         if (this.onTouched) {
             this.onTouched();
@@ -112,5 +112,9 @@ export class PlateItemComponent implements ControlValueAccessor {
         this.plate = this._tmpPlate;
         this.dateFrom = this._tmpDateFrom;
         this.touched = false;
+    }
+
+    onRemoveClick(event: MouseEvent) {
+
     }
 }

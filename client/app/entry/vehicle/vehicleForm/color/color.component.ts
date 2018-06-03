@@ -36,7 +36,7 @@ export class ColorComponent implements ControlValueAccessor {
 
     private onChange: (any) => void;
     private onTouched: () => void;
-    private disabled: boolean;
+    public disabled: boolean;
 
     writeValue(obj: any): void {
         this.value = obj;

@@ -3,5 +3,5 @@
     min-height:auto;
     z-index:10;
     background-color: white;
-    border:1px solid silver;
+    border:1px solid rgba(0,0,0,.15);
 }

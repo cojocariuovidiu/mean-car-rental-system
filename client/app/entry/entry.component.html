@@ -1,26 +1,24 @@
+<nav class="mean-navbar">
+  <div class="main-menu">
+
+    <span class="main-menu__brand">
+      MEAN-CarRentalSystem
+    </span>
+
+    <a *ngFor="let menu of menus;let i = index;" class="main-menu__item" [ngClass]="{'main-menu__item--active':selectedMenu? menu.name===selectedMenu.name:false}"
+      (click)="selectMenu(menu)">
+      <i [ngClass]="'fa fa-2x fa-'+menu.faIconClass"></i>{{menu.name}}
+    </a>
+
+  </div>
+
+  <div *ngIf="!!selectedMenu" class="sub-menu">
+
+    <a *ngFor="let subMenu of selectedMenu.subMenus;let i = index;" class="sub-menu__item" [routerLink]="[subMenu.target]" (click)="submenuClick()">
+      {{subMenu.name}}
+    </a>
 
 
-
-<nav class="navbar navbar-light bg-faded  navbar-expand-md">
-
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <a class="navbar-brand">
-    MEAN-RENTACAR
-  </a>
-
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['araclar']">Araçlar</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [routerLink]="['arac-ekle']">Araç Ekle</a>
-      </li>
-    </ul>
   </div>
 </nav>
 

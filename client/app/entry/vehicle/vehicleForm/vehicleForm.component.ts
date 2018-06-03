@@ -59,7 +59,7 @@ export class VehicleFormComponent implements OnInit {
     constructor(
         private appConfig: AppConfigService,
         private activatedRoute: ActivatedRoute,
-        private vehicleService: VehicleService,
+        public vehicleService: VehicleService,
         private spinnerService: SpinnerService,
         private fb: FormBuilder,
         private commonUtility: CommonUtilityService
@@ -67,6 +67,7 @@ export class VehicleFormComponent implements OnInit {
 
         this.vehicleForm = this.fb.group({
             "plateHistory": [null, Validators.required],
+            "features": [],
             "modelYear": [],
             "registrationDocumentNumber": [],
             "registrationDate": [],
@@ -102,6 +103,15 @@ export class VehicleFormComponent implements OnInit {
     saveVehicle(event: MouseEvent) {
         if (this.vehicleModel && this.vehicleModel._id) {
 
+            this.spinnerService.subscribe();
+
+            var val = this.vehicleForm.value;
+            val._id = this.vehicleModel._id;
+
+            this.vehicleService.update(val)
+                .subscribe(x => {
+                    this.spinnerService.unsubscribe();
+                });
         } else {
 
             console.log(this.vehicleForm);

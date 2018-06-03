@@ -1,13 +1,20 @@
-import { Component, Input, HostListener, ViewChild, ElementRef, EventEmitter } from "@angular/core";
+import { Component, Input, HostListener, ViewChild, ElementRef, EventEmitter, forwardRef } from "@angular/core";
 import { DropdownItemComponent } from "./dropdownItem/dropdownItem.component";
-import { ControlValueAccessor } from "@angular/forms";
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 declare var _: any;
 
 @Component({
     selector: "autocomplete-dropdown",
     styleUrls: ["autocompleteDropdown.component.css"],
-    templateUrl: "autocompleteDropdown.component.html"
+    templateUrl: "autocompleteDropdown.component.html",
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            multi: true,
+            useExisting: forwardRef(() => AutocompleteDropdownComponent)
+        }
+    ]
 })
 export class AutocompleteDropdownComponent implements ControlValueAccessor {
 
@@ -117,7 +124,7 @@ export class AutocompleteDropdownComponent implements ControlValueAccessor {
         }
     }
 
-    inputChange() {
+    inputChange(event: Event) {
         if (this.filterMustTriggered) {
             this.selectedItem = 0;
             this.filter();
@@ -143,6 +150,10 @@ export class AutocompleteDropdownComponent implements ControlValueAccessor {
         this.selectedItem = event.index;
     }
 
+    inputBlur() {
+        this.onTouched();
+    }
+
     dropdownItemClicked(event: DropdownItemComponent) {
         if (this.selectedValue === event.value) {
 
@@ -153,8 +164,8 @@ export class AutocompleteDropdownComponent implements ControlValueAccessor {
             this.selectedValue = event.value;
             if (this.onChange)
                 this.onChange(this.selectedValue);
-            this.visible = false;
         }
+        this.visible = false;
     }
 
 }

@@ -13,7 +13,7 @@ async function getMaxVehicleNumber(appNumber) {
         // initialize max vehicle number
         var collection = await connectionFactory.getCollection(collectionNames.vehicleCollection + appNumber);
 
-        var maxVehicle = await collection.find().sort({ vehicleNumber: -1 }).limit(1).next();
+        var maxVehicle = await collection.find().sort({ number: -1 }).limit(1).next();
 
         if (maxVehicle)
             _maxVehicleNumber = maxVehicle.vehicleNumber;
@@ -23,6 +23,32 @@ async function getMaxVehicleNumber(appNumber) {
     //
 
     return ++_maxVehicleNumber;
+}
+
+function setFeatures(vehicle) {
+    if (vehicle.features) {
+
+        var outstanding = vehicle.features.filter(x => !!x.outstanding);
+
+        if (outstanding.length > 3) {
+            while (outstanding.length > 3) {
+                outstanding.pop();
+            }
+        } else if (outstanding.length < 3) {
+            var nonOutstanding = vehicle.features.filter(x => !x.outstanding);
+
+            if (outstanding.length + nonOutstanding.length > 3) {
+                while ((outstanding.length + nonOutstanding.length) > 3) {
+                    nonOutstanding.pop();
+                }
+            }
+
+            outstanding = outstanding.concat(nonOutstanding);
+        }
+
+        var features = outstanding.map(x => x.feature.name).join(" - ");
+        vehicle.features = features;
+    }
 }
 
 async function getPaged(filterObject, appNumber) {
@@ -41,7 +67,11 @@ async function getPaged(filterObject, appNumber) {
             [
                 {
                     $addFields: {
-                        latestPlate: { $arrayElemAt: ["$plateHistory", { $indexOfArray: ["$plateHistory.dateFrom", { $max: "$plateHistory.dateFrom" }] }] },
+                        latestPlate:
+                            {
+                                $arrayElemAt: ["$plateHistory", { $indexOfArray: ["$plateHistory.dateFrom", { $max: "$plateHistory.dateFrom" }] }]
+                            },
+
                     },
                 },
                 {
@@ -81,6 +111,10 @@ async function getPaged(filterObject, appNumber) {
 
                     var data = await result.toArray();
 
+                    for (var i = 0; i < data.length; i++) {
+                        setFeatures(data[i]);
+                    }
+
                     resolve({ data, total: vehicleCount });
 
                 }
@@ -92,13 +126,22 @@ async function getPaged(filterObject, appNumber) {
 
 async function getByNumber(vehicleNumber, appNumber) {
 
+    var serviceResult = {};
+
     var vehicleCollection = await connectionFactory.getCollection(collectionNames.vehicleCollection + appNumber);
 
-    var vehicle = await vehicleCollection.findOne({ "vehicleNumber": vehicleNumber });
+    var vehicle = await vehicleCollection.findOne({ "number": vehicleNumber });
 
-    vehicle.plate = _.maxBy(vehicle.plateHistory, y => new Date(y.dateFrom.toString()).getTime()).plate;
+    if (vehicle) {
 
-    return vehicle;
+        vehicle.plate = _.maxBy(vehicle.plateHistory, y => new Date(y.dateFrom.toString()).getTime()).plate;
+
+        serviceResult = { success: true, data: vehicle }
+    } else {
+        serviceResult = { success: true, data: null }
+    }
+
+    return serviceResult;
 }
 
 async function add(vehicle, appNumber) {
@@ -125,15 +168,22 @@ async function add(vehicle, appNumber) {
 async function update(vehicle, appNumber) {
     var collection = await connectionFactory.getCollection(collectionNames.vehicleCollection + appNumber);
 
-    collection.update(
+    vehicle._id = new mongodb.ObjectID(vehicle._id);
+
+    var updateResult = await collection.updateOne(
         {
             "_id": vehicle._id
         },
         {
-            $set: {
-
-            }
+            $set: vehicle
         });
+
+    if (updateResult.result.ok && updateResult.result.ok == 1) {
+        return { success: true, data: updateResult }
+
+    } else {
+        return { success: false, message: "Araç güncellenemedi." };
+    }
 }
 
 
@@ -247,4 +297,4 @@ async function downloadVehicleFile(req, res) {
 
 
 
-module.exports = { add, getPaged, getByNumber, uploadVehicleFile, downloadVehicleFile };
+module.exports = { add, update, getPaged, getByNumber, uploadVehicleFile, downloadVehicleFile };

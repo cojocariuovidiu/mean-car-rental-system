@@ -7,59 +7,6 @@
     margin:0 auto;
 }
 
-.spinner {
-    margin: 100px auto;
-    width: 50px;
-    height: 40px;
-    text-align: center;
-    font-size: 10px;
-  }
-  
-  .spinner > div {
-    background-color: #333;
-    height: 100%;
-    width: 6px;
-    display: inline-block;
-    
-    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-    animation: sk-stretchdelay 1.2s infinite ease-in-out;
-  }
-  
-  .spinner .rect2 {
-    -webkit-animation-delay: -1.1s;
-    animation-delay: -1.1s;
-  }
-  
-  .spinner .rect3 {
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
-  }
-  
-  .spinner .rect4 {
-    -webkit-animation-delay: -0.9s;
-    animation-delay: -0.9s;
-  }
-  
-  .spinner .rect5 {
-    -webkit-animation-delay: -0.8s;
-    animation-delay: -0.8s;
-  }
-  
-  @-webkit-keyframes sk-stretchdelay {
-    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
-    20% { -webkit-transform: scaleY(1.0) }
-  }
-  
-  @keyframes sk-stretchdelay {
-    0%, 40%, 100% { 
-      transform: scaleY(0.4);
-      -webkit-transform: scaleY(0.4);
-    }  20% { 
-      transform: scaleY(1.0);
-      -webkit-transform: scaleY(1.0);
-    }
-  }
-
 
 .data-table-component{
     display:table;
@@ -105,7 +52,6 @@
 
 .page-size-container{
     float:right;
-    display:inline-block;
 }
 
 
@@ -118,18 +64,17 @@
 .page-size-container li{
     display:inline-block;
 
+    font-weight:700;
     border:1px solid #D3D0CF;
     padding:4px;
     border-radius:2px;
     cursor:pointer;
 }
 
-.page-size-container li:hover{
-    background-color:#BB820C;
-}
 
-.page-size--active{
-    background-color:#BB2E0C;
+.page-size-container li:hover,.page-size--active{
+    background-color:#0F3366;
+    color:white;
 }
 
 .pagination-container{
@@ -161,24 +106,6 @@
 }
 
 
-
-.--display-none{
-    display:none;
-}
-
-
-
-
-@media only screen and (max-width: 720px) {
-
-
-    .page-size-container{
-        float:none;
-        display:block;
-    }
-    
-    .pagination-container{
-        float:none;
-        display:block;
-    }
+.paginator-container{
+    margin-top:16px;
 }

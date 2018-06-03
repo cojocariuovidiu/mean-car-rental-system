@@ -1,0 +1,21 @@
+.feature-item{
+    display:inline-block;
+    background-color:#3C69D3;
+    border-radius:6px;
+    color:white;
+    margin-right:4px;
+    margin-bottom:4px;
+    line-height:24px;
+    font-weight:500;
+    padding:8px;
+    cursor:default;
+
+}
+
+.remove-item{
+    cursor:pointer;
+}
+
+.remove-item:hover{
+    color:gray;
+}

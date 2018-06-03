@@ -32,13 +32,13 @@ export class VehicleListComponent {
                 editButton: {
                     active: true,
                     routerLinkGenerator: (data: any) => {
-                        return "/uygulama/arac-duzenle/" + data["vehicleNumber"];
+                        return "/uygulama/arac-duzenle/" + data["number"];
                     }
                 },
                 detailButton: {
                     active: true,
                     routerLinkGenerator: (data: any) => {
-                        return "/uygulama/arac-detay/" + data["vehicleNumber"];
+                        return "/uygulama/arac-detay/" + data["number"];
                     }
                 },
                 removeButton: {
@@ -52,7 +52,11 @@ export class VehicleListComponent {
                 [
                     {
                         title: "Araç No",
-                        dataField: "vehicleNumber"
+                        dataField: "number"
+                    },
+                    {
+                        title: "Özellikler",
+                        dataField: "features"
                     },
                     {
                         dataField: "plate",

@@ -1,14 +1,22 @@
+import { INT_TYPE } from "@angular/compiler/src/output/output_ast";
 
 export class SpinnerService {
 
-    public activePromiseCount:number = 0;
+    private _activePromiseCount: number = 0;
+
+    public get activePromiseCount() {
+        return this._activePromiseCount;
+    }
+    public set activePromiseCount(value: number) {
+        this._activePromiseCount = value;
+    }
+
 
     public subscribe() {
-        this.activePromiseCount++;
+        this._activePromiseCount++;
     }
 
     public unsubscribe() {
-        this.activePromiseCount--;
-
+        this._activePromiseCount--;
     }
 }

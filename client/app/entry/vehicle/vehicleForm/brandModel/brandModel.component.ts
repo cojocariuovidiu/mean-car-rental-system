@@ -24,6 +24,9 @@ export class BrandModelComponent implements ControlValueAccessor {
         this.value = null;
         this._brandModels = value;
     }
+    public get brandModels() {
+        return this._brandModels;
+    }
 
     private _value: BrandModel;
     public set value(val: BrandModel) {

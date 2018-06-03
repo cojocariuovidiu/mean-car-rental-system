@@ -6,7 +6,6 @@ import { LoginComponent } from './login/login.component';
 import { VehicleAddComponent } from './entry/vehicle/vehicleAdd/vehicleAdd.component';
 import { VehicleEditComponent } from './entry/vehicle/vehicleEdit/vehicleEdit.component';
 import { VehicleDetailComponent } from './entry/vehicle/vehicleDetail/vehicleDetail.component';
-import { AuthGuardService } from './routeGuards/authGuard.service';
 
 
 const appRoutes: Routes = [

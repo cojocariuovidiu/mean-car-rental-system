@@ -22,6 +22,7 @@ import { UpperCaseLetterAndNumberDirective } from "../../directives/uppercase.di
 import { AutocompleteDropdownComponent } from "../../uiComponents/autocompleteDropdown/autocompleteDropdown.component";
 import { AutoCompleteDropdownModule } from "../../uiComponents/autocompleteDropdown/autocompleteDropdown.module";
 import { FeatureComponent } from "./vehicleForm/feature/feature.component";
+import { FeatureItemComponent } from "./vehicleForm/feature/featureItem/featureItem.component";
 
 @NgModule({
     imports:
@@ -50,7 +51,8 @@ import { FeatureComponent } from "./vehicleForm/feature/feature.component";
             GearTypeComponent,
             DatePickerComponent,
             UpperCaseLetterAndNumberDirective,
-            FeatureComponent
+            FeatureComponent,
+            FeatureItemComponent
         ]
 })
 export class VehicleModule {

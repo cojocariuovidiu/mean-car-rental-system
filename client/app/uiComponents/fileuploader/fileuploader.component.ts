@@ -17,7 +17,7 @@ export class FileUploaderComponent implements ControlValueAccessor {
 
     public uploading: number = 0;
 
-    private valueFiles: FileModel[] = [];
+    public valueFiles: FileModel[] = [];
 
 
     private onChange: (any) => void;
@@ -131,7 +131,7 @@ export class FileUploaderComponent implements ControlValueAccessor {
     }
 
 
-    clearFiles() {
+    clearFiles(click: MouseEvent) {
         this.fileList.files = [];
     }
 

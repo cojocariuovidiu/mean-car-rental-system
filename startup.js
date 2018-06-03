@@ -163,11 +163,12 @@ connectionFactory.getCollection(collectionNames.systemUserCollection).then(async
             var insertedApp1VehicleFeatures = await app1VehicleFeatureCollection.insertMany(vehicleFeatures);
             insertedApp1VehicleFeatures = insertedApp1VehicleFeatures.ops;
 
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 350; i++) {
                 var vehicle = randomVehicleGenerator();
+                vehicle.number = i + 1;
                 vehicle.color = insertedApp1Colors[0];
                 vehicle.brand = insertedApp1Brands[1];
-                vehicle.brand = insertedApp1Brands[1].models[0];
+                vehicle.brandModel = insertedApp1Brands[1].models[0];
                 vehicle.features =
                     [
                         { feature: insertedApp1VehicleFeatures[0] },
@@ -200,9 +201,10 @@ connectionFactory.getCollection(collectionNames.systemUserCollection).then(async
 
             for (var i = 0; i < 10; i++) {
                 var vehicle = randomVehicleGenerator();
+                vehicle.number = i + 1;
                 vehicle.color = insertedApp2Colors[0];
                 vehicle.brand = insertedApp2Brands[1];
-                vehicle.brand = insertedApp2Brands[1].models[0];
+                vehicle.brandModel = insertedApp2Brands[1].models[0];
                 vehicle.features =
                     [
                         { feature: insertedApp2VehicleFEatures[0] },

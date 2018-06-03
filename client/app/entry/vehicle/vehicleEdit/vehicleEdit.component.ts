@@ -22,7 +22,7 @@ export class VehicleEditComponent implements OnInit {
         private vehicleService: VehicleService
     ) {
 
-        var vehicleNumber = this.activatedRoute.snapshot.params["vehicleNumber"];
+        var vehicleNumber = this.activatedRoute.snapshot.params["number"];
 
         vehicleService.getByNumber(vehicleNumber).subscribe(x => {
             this.vehicleModel = x;

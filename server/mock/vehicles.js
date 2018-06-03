@@ -106,7 +106,7 @@ var randomVehicleGenerator = function () {
     var seatCount = generateNumberBetween(5, 12);
 
     return {
-        vehicleNumber: vehicleNumber++,
+        number: vehicleNumber++,
         plateHistory: plate,
         modelYear,
         registrationDocumentNumber,

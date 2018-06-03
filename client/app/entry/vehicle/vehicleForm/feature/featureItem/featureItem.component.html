@@ -1,0 +1,4 @@
+<div class="feature-item">
+    <input type="checkbox" value="true" [checked]="!!value.outstanding" (change)="outstandingChange($event)" />{{value.feature.name}}
+    <i class="fa fa-times remove-item" (click)="itemRemove($event)"></i>
+</div>

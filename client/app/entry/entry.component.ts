@@ -28,8 +28,90 @@ export class EntryComponent implements OnInit, AfterViewInit, AfterViewChecked, 
         public spinnerService: SpinnerService,
         private applicationRef: ApplicationRef,
         private userService: UserService) {
+    }
+
+    public selectedMenu: any;
+    public menus: any = [
+        {
+            name: "Araç",
+            faIconClass: "car",
+            subMenus: [
+
+                {
+                    name: "Araç Listesi",
+                    target: "araclar"
+                },
+                {
+                    name: "Araç Ekle",
+                    target: "arac-ekle"
+                }
+            ]
+        },
+        {
+            name: "Müşteri",
+            faIconClass: "user-circle",
+            subMenus: [
+
+                {
+                    name: "Müşteri Ekle",
+                    target: "uygulama/araclar"
+                },
+                {
+                    name: "Müşteri Listesi",
+                    target: "uygulama/arac-ekle"
+                },
+                {
+                    name: "Müşteri Görüşme Ekranı",
+                    target: "uygulama/arac-ekle"
+                }
+            ]
+        },
+        {
+            name: "Muhasebe",
+            faIconClass: "calculator",
+            subMenus: [
+
+                {
+                    name: "Borç Ekleme",
+                    target: "uygulama/araclar"
+                },
+                {
+                    name: "Borç Listesi",
+                    target: "uygulama/arac-ekle"
+                },
+                {
+                    name: "Tahsilat Ekleme",
+                    target: "uygulama/araclar"
+                },
+                {
+                    name: "Tahsilat Listesi",
+                    target: "uygulama/arac-ekle"
+                },
+                {
+                    name: "Cari Hesap Ekstresi",
+                    target: "uygulama/araclar"
+                }
+            ]
+        }
+    ]
 
 
+    public selectMenu(menu: any) {
+        if (this.selectedMenu != null) {
+            if (this.selectedMenu === menu)
+                this.selectedMenu = null;
+            else
+                this.selectedMenu = menu;
+
+        } else {
+            this.selectedMenu = menu;
+
+        }
+        console.log(menu);
+    }
+
+    public submenuClick() {
+        this.selectedMenu = null;
     }
 
     ngOnInit(): void {

@@ -31,19 +31,13 @@
 
             <ng-container *ngIf="_options.operationColumnConfiguration">
 
-                <toolbox
-                 [editActive]="_options.operationColumnConfiguration.editButton.active" 
-                 [detailActive]="_options.operationColumnConfiguration.detailButton.active"
-                 [removeActive]="_options.operationColumnConfiguration.removeButton.active"
-                 [editRouterLink]="_options.operationColumnConfiguration.editButton.routerLinkGenerator(row)"
-                 [detailRouterLink]="_options.operationColumnConfiguration.detailButton.routerLinkGenerator(row)"
-                 [removeRouterLink]=
-                 "
+                <toolbox [editActive]="_options.operationColumnConfiguration.editButton.active" [detailActive]="_options.operationColumnConfiguration.detailButton.active"
+                    [removeActive]="_options.operationColumnConfiguration.removeButton.active" [editRouterLink]="_options.operationColumnConfiguration.editButton.routerLinkGenerator(row)"
+                    [detailRouterLink]="_options.operationColumnConfiguration.detailButton.routerLinkGenerator(row)" [removeRouterLink]="
                     _options.operationColumnConfiguration.removeButton.routerLinkGenerator?
                     _options.operationColumnConfiguration.removeButton.routerLinkGenerator(row):
                     null
-                 "
-                 [allEnabled]="_options.operationColumnConfiguration.operationButtonsEnabled? _options.operationColumnConfiguration.operationButtonsEnabled():true">
+                 " [allEnabled]="_options.operationColumnConfiguration.operationButtonsEnabled? _options.operationColumnConfiguration.operationButtonsEnabled():true">
 
                 </toolbox>
 
@@ -52,51 +46,50 @@
 
         </tr>
     </tbody>
-    <tfoot>
-        <th [attr.colspan]="_options.columns? _options.columns.length:0">
-            <div class="pagination-container">
 
-                <ul>
-                    <li (click)="changePage(currentPage-1)">
-                        <a>Önceki</a>
-                    </li>
-                    <li *ngIf="currentPage>3" (click)="changePage(currentPage-3)">
-                        <a>{{currentPage-3}}</a>
-                    </li>
-
-                    <li *ngIf="currentPage>2" (click)="changePage(currentPage-2)">
-                        <a>{{currentPage-2}}</a>
-                    </li>
-                    <li *ngIf="currentPage>1" (click)="changePage(currentPage-1)">
-                        <a>{{currentPage-1}}</a>
-                    </li>
-                    <li class="pagination--active">
-                        <a>{{currentPage}}</a>
-                    </li>
-                    <li *ngIf="currentPage<pageCount" (click)="changePage(currentPage+1)">
-                        <a>{{currentPage+1}}</a>
-                    </li>
-
-                    <li *ngIf="currentPage<pageCount-1" (click)="changePage(currentPage+2)">
-                        <a>{{currentPage+2}}</a>
-                    </li>
-                    <li *ngIf="currentPage<pageCount-2" (click)="changePage(currentPage+3)">
-                        <a>{{currentPage+3}}</a>
-                    </li>
-                    <li (click)="changePage(currentPage+1)">
-                        <a>Sonraki</a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="page-size-container">
-                <ul>
-                    <li class="page-size" *ngFor="let size of sizeList" [ngClass]="{'page-size--active':take==size}" (click)="onSizeClick(size)">
-                        <a>{{size}}</a>
-                    </li>
-                </ul>
-            </div>
-
-        </th>
-    </tfoot>
 </table>
+
+<div class="paginator-container">
+    <div class="pagination-container">
+
+        <ul>
+            <li (click)="changePage(currentPage-1)" [ngClass]="{'--cursor-disabled': currentPage<=1}">
+                <a>Önceki</a>
+            </li>
+            <li *ngIf="currentPage>3" (click)="changePage(currentPage-3)">
+                <a>{{currentPage-3}}</a>
+            </li>
+
+            <li *ngIf="currentPage>2" (click)="changePage(currentPage-2)">
+                <a>{{currentPage-2}}</a>
+            </li>
+            <li *ngIf="currentPage>1" (click)="changePage(currentPage-1)">
+                <a>{{currentPage-1}}</a>
+            </li>
+            <li class="pagination--active">
+                <a>{{currentPage}}</a>
+            </li>
+            <li *ngIf="currentPage<pageCount" (click)="changePage(currentPage+1)">
+                <a>{{currentPage+1}}</a>
+            </li>
+
+            <li *ngIf="currentPage<pageCount-1" (click)="changePage(currentPage+2)">
+                <a>{{currentPage+2}}</a>
+            </li>
+            <li *ngIf="currentPage<pageCount-2" (click)="changePage(currentPage+3)">
+                <a>{{currentPage+3}}</a>
+            </li>
+            <li (click)="changePage(currentPage+1)" [ngClass]="{'--cursor-disabled': currentPage>=pageCount}">
+                <a>Sonraki </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="page-size-container">
+        <ul>
+            <li class="page-size" *ngFor="let size of sizeList" [ngClass]="{'page-size--active':take==size}" (click)="onSizeClick(size)">
+                <a>{{size}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

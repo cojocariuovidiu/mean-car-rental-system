@@ -1,1 +1,56 @@
 
+.mean-navbar{
+}
+
+.main-menu{
+    height:72px;
+    line-height:72px;
+    background-color: #FF8900;
+    margin-bottom:0;
+}
+
+
+.main-menu__brand{
+    font-weight:700;
+    font-size:24px;
+    padding:0 16px;
+}
+
+.main-menu__item{
+    color:black;
+    padding:8px;
+    height:72px;
+    line-height:72px;
+    display:inline-block;
+    cursor:pointer;
+}
+
+.main-menu__item:hover{
+    text-decoration: none;
+    background-color:#FFA947;
+}
+
+.main-menu__item--active{
+    background-color:#FFA947;
+}
+
+.sub-menu{
+    position:absolute;
+    background-color:#FFA947;
+    height:42px;
+    width:100%;
+    margin:0;
+}
+
+.sub-menu__item{
+    color:black;
+    line-height:26px;
+    display:inline-block;
+    padding:8px;
+}
+
+.sub-menu__item:hover{
+    text-decoration: none;
+
+    border-bottom:2px solid #673700;
+}

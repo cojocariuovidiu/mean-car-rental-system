@@ -46,7 +46,7 @@ export class DropdownItemComponent {
     @ViewChild("itemElement")
     public itemElement: ElementRef;
 
-    mouseOver() {
+    mouseOver(event:MouseEvent) {
         this.onSelected.emit(this);
     }
 

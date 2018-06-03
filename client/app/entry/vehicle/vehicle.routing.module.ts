@@ -23,11 +23,11 @@ const vehicleRoutes: Routes = [
                 component: VehicleAddComponent
             },
             {
-                path: 'arac-duzenle/:vehicleNumber',
+                path: 'arac-duzenle/:number',
                 component: VehicleEditComponent
             },
             {
-                path: 'arac-detay/:vehicleNumber',
+                path: 'arac-detay/:number',
                 component: VehicleDetailComponent
             }
         ]
